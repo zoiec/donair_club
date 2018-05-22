@@ -68,8 +68,9 @@ gem 'draper'
 gem 'decent_exposure'
 gem 'simple_form'
 gem 'reform'
-gem 'aws-sdk', '~> 3'
+
 group :development, :test do
+  gem 'rspec'
   gem 'pry'
   gem 'rubocop'
   gem 'better_errors'

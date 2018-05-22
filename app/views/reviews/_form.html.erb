@@ -1,0 +1,23 @@
+
+<%= simple_form_for(@review) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :value %>
+    <%= f.input :presentation %>
+    <%= f.input :texture %>
+    <%= f.input :napkins_used %>
+    <%= f.input :taste %>
+    <%= f.input :gut_feel_under_30 %>
+    <%= f.input :gut_feel_after_30 %>
+    <%= f.input :order_accuracy %>
+    <%= f.input :sauce_level %>
+    <%= f.input :notes %>
+    <%= f.association :user %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

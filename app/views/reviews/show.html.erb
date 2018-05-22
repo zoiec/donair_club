@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @review.value %>
+</p>
+
+<p>
+  <strong>Presentation:</strong>
+  <%= @review.presentation %>
+</p>
+
+<p>
+  <strong>Texture:</strong>
+  <%= @review.texture %>
+</p>
+
+<p>
+  <strong>Napkins used:</strong>
+  <%= @review.napkins_used %>
+</p>
+
+<p>
+  <strong>Taste:</strong>
+  <%= @review.taste %>
+</p>
+
+<p>
+  <strong>Gut feel under 30:</strong>
+  <%= @review.gut_feel_under_30 %>
+</p>
+
+<p>
+  <strong>Gut feel after 30:</strong>
+  <%= @review.gut_feel_after_30 %>
+</p>
+
+<p>
+  <strong>Order accuracy:</strong>
+  <%= @review.order_accuracy %>
+</p>
+
+<p>
+  <strong>Sauce level:</strong>
+  <%= @review.sauce_level %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @review.notes %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @review.user %>
+</p>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>

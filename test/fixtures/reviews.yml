@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: 9.99
+  presentation: 9.99
+  texture: 9.99
+  napkins_used: 1
+  taste: 9.99
+  gut_feel_under_30: 9.99
+  gut_feel_after_30: 9.99
+  order_accuracy: 9.99
+  sauce_level: 9.99
+  notes: MyText
+  user: one
+
+two:
+  value: 9.99
+  presentation: 9.99
+  texture: 9.99
+  napkins_used: 1
+  taste: 9.99
+  gut_feel_under_30: 9.99
+  gut_feel_after_30: 9.99
+  order_accuracy: 9.99
+  sauce_level: 9.99
+  notes: MyText
+  user: two
