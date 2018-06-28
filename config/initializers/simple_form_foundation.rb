@@ -49,6 +49,47 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :numbers_form, tag: 'div', class: 'medium-3 cell', hint_class: :field_with_hint, error_class: :error, valid_class: :valid do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    
+    b.use :label
+    b.use :input
+
+    # b.wrapper tag: :div, class: 'separator' do |component|
+    #   component.optional :hint, wrap_with: { tag: :span, class: :hint }
+    #   component.use :error, wrap_with: { tag: :span, class: :error }
+    # end
+
+    # b.wrapper :container_wrapper, tag: 'div', class: 'medium-3 cell' do |ba|
+    #   # ba.wrapper tag: 'label', class: 'checkbox' do |bb|
+    #     ba.use :input
+    #     ba.use :label_text
+    #   # end
+
+    #   ba.use :error, wrap_with: { tag: :small, class: :error }
+    #   # ba.use :hint,  wrap_with: { tag: :span, class: :hint }
+    # end
+    # <div class="input decimal optional review_value">
+    #   <label class="decimal optional" for="review_value">Value</label>
+    #   <input class="numeric decimal optional" type="number" step="any" name="review[value]" id="review_value">
+    # </div>
+    # b.wrapper :label_wrapper, tag: :div, class: 'small-3 columns' do |ba|
+    #   ba.use :label, class: 'text-right inline'
+    # end
+
+    # b.wrapper :right_input_wrapper, tag: :div, class: 'small-9 columns' do |ba|
+    #   ba.use :input
+    #   ba.use :error, wrap_with: { tag: :small, class: :error }
+    #   # ba.use :hint,  wrap_with: { tag: :span, class: :hint }
+    # end
+  end
+
   config.wrappers :horizontal_radio_and_checkboxes, tag: 'div', class: 'row' do |b|
     b.use :html5
     b.optional :readonly

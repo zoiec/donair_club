@@ -1,3 +1,8 @@
+<div>
+  Welcome <%= current_user.first_name %>
+</div>
+<%= link_to 'Edit Registration', edit_user_registration_path %>
+<%= link_to 'log Out', destroy_user_session_path, method: :delete %>
 <p id="notice"><%= notice %></p>
 
 <h1>Reviews</h1>
@@ -5,6 +10,7 @@
 <table>
   <thead>
     <tr>
+      <th>Restaurant</th>
       <th>Value</th>
       <th>Presentation</th>
       <th>Texture</th>
@@ -20,9 +26,10 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="reviews">
     <% @reviews.each do |review| %>
       <tr>
+        <td><%= review.restaurant.name %></td>
         <td><%= review.value %></td>
         <td><%= review.presentation %></td>
         <td><%= review.texture %></td>
@@ -33,7 +40,7 @@
         <td><%= review.order_accuracy %></td>
         <td><%= review.sauce_level %></td>
         <td><%= review.notes %></td>
-        <td><%= review.user %></td>
+        <td><%= review.user.first_name %></td>
         <td><%= link_to 'Show', review %></td>
         <td><%= link_to 'Edit', edit_review_path(review) %></td>
         <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>

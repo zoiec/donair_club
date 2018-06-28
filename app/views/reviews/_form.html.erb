@@ -1,20 +1,20 @@
 
-<%= simple_form_for(@review) do |f| %>
+<%= simple_form_for @review do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :value %>
-    <%= f.input :presentation %>
-    <%= f.input :texture %>
-    <%= f.input :napkins_used %>
-    <%= f.input :taste %>
-    <%= f.input :gut_feel_under_30 %>
-    <%= f.input :gut_feel_after_30 %>
-    <%= f.input :order_accuracy %>
-    <%= f.input :sauce_level %>
-    <%= f.input :notes %>
-    <%= f.association :user %>
+  <div class="grid-x form-inputs">
+    <%= f.association :restaurant, numbers_form: false, wrapper_html: { class: 'cell' } %>
+    <%= f.input :value, wrapper: :numbers_form %>
+    <%= f.input :presentation, wrapper: :numbers_form %>
+    <%= f.input :texture, wrapper: :numbers_form %>
+    <%= f.input :napkins_used, wrapper: :numbers_form %>
+    <%= f.input :taste, wrapper: :numbers_form %>
+    <%= f.input :gut_feel_under_30, label: 'Gut Feel Under 30 mins', wrapper: :numbers_form %>
+    <%= f.input :gut_feel_after_30, label: 'Gut Feel After 30 mins', wrapper: :numbers_form %>
+    <%= f.input :order_accuracy, wrapper: :numbers_form %>
+    <%= f.input :sauce_level, wrapper: :numbers_form %>
+    <%= f.input :notes, numbers_form: false, wrapper_html: { class: 'cell' } %>
   </div>
 
   <div class="form-actions">
