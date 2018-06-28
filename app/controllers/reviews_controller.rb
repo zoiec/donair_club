@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   # GET /reviews
@@ -62,6 +63,7 @@ class ReviewsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
@@ -69,6 +71,19 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:value, :presentation, :texture, :napkins_used, :taste, :gut_feel_under_30, :gut_feel_after_30, :order_accuracy, :sauce_level, :notes, :user_id)
+      params.require(:review).permit(
+        :value, :presentation, 
+        :texture, 
+        :napkins_used, 
+        :taste, 
+        :gut_feel_under_30, :gut_feel_after_30, 
+        :order_accuracy, 
+        :sauce_level, 
+        :notes,
+        :restaurant_id,
+        :user_id
+      ).merge(
+        user_id: current_user.id
+      )
     end
 end
