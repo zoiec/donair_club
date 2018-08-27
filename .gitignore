@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -23,8 +24,38 @@
 /node_modules
 /yarn-error.log
 
+/.env
+/.env.development
+/.env.staging
+/.env.production
+
 /public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+
+bin/byebug
+bin/capify
+bin/chromedriver
+bin/chromedriver-update
+bin/coderay
+bin/htmldiff
+bin/launchy
+bin/ldiff
+bin/nokogiri
+bin/pry
+bin/puma
+bin/pumactl
+bin/rackup
+bin/rspec
+bin/rubocop
+bin/ruby-parse
+bin/ruby-rewrite
+bin/sass
+bin/sass-convert
+bin/scss
+bin/sprockets
+bin/thor
+bin/tilt

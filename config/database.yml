@@ -20,6 +20,15 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: db/production.sqlite3
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
+
+production:  
+  adapter: postgresql  
+  encoding: unicode  
+  username: postgres  
+  password:  
+  pool: 5
+  host: db
+  database: donair_club_production

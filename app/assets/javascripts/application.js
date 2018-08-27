@@ -16,6 +16,8 @@
 //= require foundation
 //= require activestorage
 //= require turbolinks
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {

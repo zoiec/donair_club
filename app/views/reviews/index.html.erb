@@ -49,6 +49,25 @@
   </tbody>
 </table>
 
+<% Restaurant.all.each do |restaurant| %>
+      <%= restaurant.name %>
+      <% length = restaurant.reviews.length %>
+      <%=
+        bar_chart [
+          { name: 'Value', data: [['Value', restaurant.reviews.map{ |t| t.value }.any? ? restaurant.reviews.map{ |t| t.value }.sum / length : 0]] },
+          { name: 'Presentation', data: [['Presentation', binding.pry ]] },
+          { name: 'Texture', data: [['Texture', restaurant.reviews.map{ |t| t.texture }.any? ? restaurant.reviews.map{ |t| t.texture }.sum / length : 0]] }
+
+          # { name: "Napkins Used", data: restaurant.reviews.map{ |t| t.napkins_used.to_f }.any? ? restaurant.reviews.map{ |t| t.napkins_used.to_f }.sum / length : 0 },
+          # { name: "Taste", data: restaurant.reviews.map{ |t| t.taste }.any? ? restaurant.reviews.map{ |t| t.taste }.sum / length : 0 },
+          # { name: "Gut Feel Under 30min", data: restaurant.reviews.map{ |t| t.gut_feel_under_30 }.any? ? restaurant.reviews.map{ |t| t.gut_feel_under_30 }.sum / length : 0 },
+          # { name: "Gut Feel After 30min", data: restaurant.reviews.map{ |t| t.gut_feel_after_30 }.any? ? restaurant.reviews.map{ |t| t.gut_feel_after_30 }.sum / length : 0 },
+          # { name: "Order Accuracy", data: restaurant.reviews.map{ |t| t.order_accuracy }.any? ? restaurant.reviews.map{ |t| t.order_accuracy }.sum / length : 0 },
+          # { name: "Sauce Level", data: restaurant.reviews.map{ |t| t.sauce_level }.any? ? restaurant.reviews.map{ |t| t.sauce_level }.sum / length : 0 }
+        ] 
+      %>
+    <% end %>
+
 <br>
 
 <%= link_to 'New Review', new_review_path %>
