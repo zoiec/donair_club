@@ -1,4 +1,5 @@
 <tr>
+  <td><%= review.restaurant.name %></td>
   <td><%= review.value %></td>
   <td><%= review.presentation %></td>
   <td><%= review.texture %></td>
@@ -9,7 +10,7 @@
   <td><%= review.order_accuracy %></td>
   <td><%= review.sauce_level %></td>
   <td><%= review.notes %></td>
-  <td><%= review.user %></td>
+  <td><%= review.user.first_name %></td>
   <td><%= link_to 'Show', review %></td>
   <td><%= link_to 'Edit', edit_review_path(review) %></td>
   <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -44,7 +44,6 @@ bin/coderay
 bin/htmldiff
 bin/launchy
 bin/ldiff
-bin/listen
 bin/nokogiri
 bin/pry
 bin/puma
