@@ -24,10 +24,10 @@
 /node_modules
 /yarn-error.log
 
-/.env
-/.env.development
-/.env.staging
-/.env.production
+.env
+.env.development
+.env.staging
+.env.production
 
 /public/assets
 .byebug_history
