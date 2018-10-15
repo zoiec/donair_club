@@ -47,18 +47,27 @@ set :repo_url, 'git@github.com:zoiec/donair_club.git'
 set :branch, ask("Branch name? or enter for master", "master")
 set :deploy_to, '/srv/www/donair_club'
 set :pty, true
-# set :linked_files, %w{config/database.yml config/application.yml}
-set :linked_files, fetch(:linked_files, []).push('.env') << ".bundle"
+
+set :linked_files, %w{config/database.yml .env}
+
+# set :linked_files, fetch(:linked_files, []).push('.env') << ".bundle"
+
+
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
+append :linked_dirs, '.bundle'
+
+
 set :keep_releases, 5
+
 # set :rvm_type, :user
 # set :rvm_ruby_version, 'jruby-1.7.19' # Edit this if you are using MRI Ruby
 
-# set :puma_rackup, -> { File.join(current_path, 'config.ru') }
-# set :puma_state, "#{shared_path}/tmp/pids/puma.state"
-# set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
-# set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"    #accept array for multi-bind
-# set :puma_conf, "#{shared_path}/puma.rb"
+set :puma_rackup, -> { File.join(current_path, 'config.ru') }
+set :puma_state, "#{shared_path}/pids/puma.state"
+set :puma_pid, "#{shared_path}/pids/puma.pid"
+set :puma_bind, "unix://#{shared_path}/sockets/puma.sock"    #accept array for multi-bind
+
+set :puma_conf, "#{current_path}/config/puma/#{fetch(:stage)}.rb"
 set :puma_access_log, "#{shared_path}/log/puma_error.log"
 set :puma_error_log, "#{shared_path}/log/puma_access.log"
 set :puma_role, :app
@@ -81,16 +90,82 @@ set :ec2_contact_point, :public_ip
 set :ec2_region, %w{us-west-2}
 
 set :rbenv_ruby, '2.4.1'
+set :env_file, ".env.#{fetch(:stage)}"
+
+# namespace :puma do
+#   desc 'Create Directories for Puma Pids and Socket'
+#   task :make_dirs do
+#     on roles(:app) do
+#       execute "mkdir #{shared_path}/sockets -p"
+#       execute "mkdir #{shared_path}/pids -p"
+#     end
+#   end
+
+#   before :start, :make_dirs
+# end
 
 namespace :deploy do
   # task :restart do
   #   invoke 'unicorn:restart'
   # end
+  # after 'deploy:publishing', 'deploy:restart'
+
+  # desc 'Initial Deploy'
+  # task :initial do
+  #   on roles(:app) do
+  #     before 'deploy:restart', 'puma:start'
+  #     invoke 'deploy'
+  #   end
+  # end
+
+  # desc 'Restart application'
+  # task :restart do
+  #   on roles(:app), in: :sequence, wait: 5 do
+  #     invoke 'puma:restart'
+  #   end
+  # end
+
+  invoke 'dotenv:read'
+  # invoke 'dotenv:check'
+  invoke 'dotenv:setup'
+
   before 'check:linked_files', 'environment:push'
   # before 'check:linked_files', 'environment:fetch'
   # after 'environment:fetch', 'environment:push'
-  after :starting, 'check:forwarding'
-  after :starting, 'check:write_permissions'
-  after :finished, 'environment:remove'
-  after :published, :restart
+  # after :starting, 'check:forwarding'
+  # after :starting, 'check:write_permissions'
+  # after :finished, 'environment:remove'
+
+  # after :published, :restart
 end
+
+# namespace :deploy do
+#   after :finishing, 'deploy:cleanup'
+#   # after 'deploy:publishing', 'deploy:restart'
+  
+#   after :restart, :clear_cache do
+#     on roles(:web), in: :groups, limit: 3, wait: 10 do
+#       # Here we can do anything such as:
+#       within release_path do
+#         execute :rake, 'tmp:clear'
+#       end
+#     end
+#   end
+
+#   desc "Make sure local git is in sync with remote."
+#   task :check_revision do
+#     on roles(:app) do
+#       unless `git rev-parse HEAD` == `git rev-parse origin/master`
+#         puts "WARNING: HEAD is not the same as origin/master"
+#         puts "Run `git push` to sync changes."
+#         exit
+#       end
+#     end
+#   end
+
+  
+
+#   before :starting,     :check_revision
+#   after  :finishing,    :compile_assets
+#   after  :finishing,    :cleanup
+# end

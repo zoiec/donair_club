@@ -60,6 +60,7 @@ group :development do
   gem 'capistrano3-puma'
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
+  gem 'capistrano-dotenv', require: false
   gem 'capistrano-rbenv'
   gem 'cap-ec2'
 end
@@ -82,7 +83,10 @@ gem 'draper'
 gem 'decent_exposure'
 gem 'simple_form'
 gem 'reform'
-# gem 'therubyracer'
+
+gem 'libv8'
+gem 'mini_racer'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'rspec'
