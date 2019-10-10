@@ -783,7 +783,6 @@ GEM
     minitest (5.11.3)
     msgpack (1.2.4)
     multi_json (1.13.1)
-    mysql2 (0.5.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
@@ -953,7 +952,6 @@ DEPENDENCIES
   letter_opener
   libv8
   mini_racer
-  mysql2
   pg
   pry
   puma (~> 3.11)
@@ -977,4 +975,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.6
+   1.17.3
